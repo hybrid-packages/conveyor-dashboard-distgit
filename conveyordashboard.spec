@@ -61,9 +61,9 @@ rm -rf {test-,}requirements.txt tools/{pip,test}-requires
 %{__python2} setup.py build
 
 # Generate i18n files
-# pushd build/lib/%{mod_name}
-# django-admin compilemessages
-# popd
+pushd build/lib/%{mod_name}
+django-admin compilemessages
+popd
 
 # generate html docs
 # %{__python2} setup.py build_sphinx
@@ -77,6 +77,13 @@ mkdir -p %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/e
 # Enable Horizon plugin for conveyor-dashboard
 cp %{_builddir}/%{pypi_name}-%{upstream_version}/conveyordashboard/local/_50_conveyor.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
 
+# remove unnecessary .po files
+find %{buildroot} -name django.po -exec rm '{}' \;
+find %{buildroot} -name djangojs.po -exec rm '{}' \;
+
+# Find language files
+%find_lang django --all-name
+
 #%check
 #export PYTHONPATH="%{_datadir}/openstack-dashboard:%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
 #%{__python2} manage.py test conveyordashboard --settings=conveyordashboard.tests.settings
@@ -87,7 +94,7 @@ cp %{_builddir}/%{pypi_name}-%{upstream_version}/conveyordashboard/local/_50_con
 %postun
 %systemd_postun_with_restart httpd.service
 
-%files
+%files -f django.lang
 %license LICENSE
 %doc README.md
 %{python2_sitelib}/conveyordashboard
