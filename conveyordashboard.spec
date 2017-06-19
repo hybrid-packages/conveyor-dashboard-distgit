@@ -18,7 +18,7 @@ BuildRequires:  python-devel
 # BuildRequires:  python-django-nose
 BuildRequires:  python-mock
 BuildRequires:  python-mox3
-# BuildRequires:  python-conveyorclient
+BuildRequires:  python-conveyorclient
 # BuildRequires:  python-oslo-config >= 2:3.14.0
 BuildRequires:  python-pbr >= 1.6
 BuildRequires:  python-setuptools
@@ -30,7 +30,7 @@ Requires:       PyYAML >= 3.10
 Requires:       python-babel >= 2.3.4
 Requires:       python-django >= 1.8
 Requires:       python-iso8601 >= 0.1.11
-# Requires:       python-conveyorclient >= 0.8.2
+Requires:       python-conveyorclient
 Requires:       python-six >= 1.9.0
 BuildArch:      noarch
 
