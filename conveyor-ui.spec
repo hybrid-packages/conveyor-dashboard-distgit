@@ -9,21 +9,19 @@ Summary:        The UI component for the OpenStack conveyor service
 Group:          Applications/Communications
 License:        ASL 2.0
 URL:            https://github.com/Hybrid-Cloud/%{pypi_name}
-Source0:		https://github.com/Hybrid-Cloud/%{name}/%{name}-%{upstream_version}.tar.gz
+Source0:        https://github.com/Hybrid-Cloud/%{name}/%{name}-%{upstream_version}.tar.gz
 
 BuildRequires:  gettext
 BuildRequires:  openstack-dashboard
 BuildRequires:  python-devel
-# BuildRequires:  python-django-formtools
-# BuildRequires:  python-django-nose
+BuildRequires:  python-django-formtools
+BuildRequires:  python-django-nose
 BuildRequires:  python-mock
 BuildRequires:  python-mox3
 BuildRequires:  python-conveyorclient
-# BuildRequires:  python-oslo-config >= 2:3.14.0
 BuildRequires:  python-pbr >= 1.6
 BuildRequires:  python-setuptools
 BuildRequires:  python-testtools
-# BuildRequires:  python-yaql >= 1.1.0
 
 Requires:       openstack-dashboard
 Requires:       PyYAML >= 3.10
@@ -86,7 +84,7 @@ find %{buildroot} -name djangojs.po -exec rm '{}' \;
 
 #%check
 #export PYTHONPATH="%{_datadir}/openstack-dashboard:%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
-#%{__python2} manage.py test conveyordashboard --settings=conveyordashboard.tests.settings
+#%{__python2} manage.py test conveyordashboard --settings=conveyordashboard.test.settings
 
 %post
 %systemd_postun_with_restart httpd.service
