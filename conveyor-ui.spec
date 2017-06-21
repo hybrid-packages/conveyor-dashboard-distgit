@@ -82,9 +82,9 @@ find %{buildroot} -name djangojs.po -exec rm '{}' \;
 # Find language files
 %find_lang django --all-name
 
-#%check
-#export PYTHONPATH="%{_datadir}/openstack-dashboard:%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
-#%{__python2} manage.py test conveyordashboard --settings=conveyordashboard.test.settings
+%check
+export PYTHONPATH="%{_datadir}/openstack-dashboard:%{python2_sitearch}:%{python2_sitelib}:%{buildroot}%{python2_sitelib}"
+%{__python2} manage.py test conveyordashboard --settings=conveyordashboard.test.settings
 
 %post
 %systemd_postun_with_restart httpd.service
