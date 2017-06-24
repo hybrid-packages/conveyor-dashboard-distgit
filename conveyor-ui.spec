@@ -73,7 +73,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 
 mkdir -p %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled
 # Enable Horizon plugin for conveyor-dashboard
-cp %{_builddir}/%{pypi_name}-%{upstream_version}/conveyordashboard/local/_50_conveyor.py %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
+cp %{_builddir}/%{pypi_name}-%{upstream_version}/conveyordashboard/local/enabled/* %{buildroot}%{_datadir}/openstack-dashboard/openstack_dashboard/local/enabled/
 
 # remove unnecessary .po files
 find %{buildroot} -name django.po -exec rm '{}' \;
